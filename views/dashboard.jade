@@ -1,0 +1,68 @@
+extends layout
+
+block content
+	if deals.length > 0
+		h1= nav_loc
+		table
+			thead
+				tr
+					th(width='30%') Business Name
+					th(width='20%') Name Of Deal
+					th(width='10%') Member #
+					th(width='10%')= (nav_loc == 'Expired Deals') ? "Expired On" : "Expiry Date" 
+					th(width='10%') Has Image
+					th(width='10%')= (nav_loc == 'Expired Deals') ? "Clear" : "More Info"
+			tbody
+				for deal in deals
+					tr
+						td= deal.business_name
+						td= deal.deal_name
+						td= deal.member_number
+						td= moment(deal.expires).format('DD/MM/YYYY')
+						td
+							if(deal.has_image)
+								span(style='color: #2FB629') YES
+							else
+								span(style='color: #B62929') NO
+						td
+							if(nav_loc == 'Submitted Deals')
+								a(href='/dashboard/' + deal.id).btn.more View
+							if(nav_loc == 'Current Deals')
+								a(href='/dashboard/approved/' + deal.id).btn.more View
+							if(nav_loc == 'Expired Deals')
+								a(onClick='clearExpired('+deal.id+')').btn.more Clear
+
+		if(nav_loc == 'Expired Deals')
+			a(onClick='ClearAll()').button.clear Clear All
+
+	else
+		p#no_current= "No " + nav_loc
+
+	script.
+		function clearExpired(id) {
+			$.ajax({
+				type: 'delete',
+				url: '/dashboard/' + id,
+				success: function() {
+					location.reload(true);
+				},
+				error: function() {
+					alert('There was an error completing the action.');
+					location.reload(true);
+				}
+			});
+		}
+		function ClearAll()
+		{
+			$.ajax({
+				type: 'delete',
+				url: '/dashboard/expired',
+				success: function() {
+					location.reload(true);
+				},
+				error: function() {
+					alert('There was an error completing the action.');
+					//location.reload(true);
+				}
+			});
+		}

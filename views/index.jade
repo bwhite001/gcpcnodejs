@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	if deal != null && deals.length > 0
+		#deal_content
+			for n in deals
+				.hotdeal
+					h1#hotdeal_busname= deal.deal_name
+					h2#hotdeal_dealname= "By "+deal.business_name
+					h3#hotdeal_expires= 'Expires: ' + deal.expires.toDateString()
+					if deal.desc != null && deal.desc != ""
+						p#hotdeal_desc= deal.desc
+					#hotdeal_image
+						if deal.has_image
+							#deal_image(style='background-image: url("/uploads/'+deal.id+'.'+deal.file_type+'")')
+						else
+							#deal_image(style='background-image: url("/images/logo.jpg")').logo
+								#deal_no_image No Image Provided
+
+
+	else
+		p#no_current No Hot Deals At this time!

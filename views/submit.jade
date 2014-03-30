@@ -1,0 +1,29 @@
+extends layout
+
+block content
+	h1 Submit a Hot Deal!
+	#form-wrapper
+		if (error)
+			p.alert.error There was an error submitting the deal for review. Please ensure all fields are filled correctly.
+		form(action='/submit', method='post', enctype='multipart/form-data')
+			label(for='bus_name_field') Business Name
+			input#bus_name_field(type='text', name='business_name')
+			label(for='deal_name_field') Name of Deal
+			input#deal_name_field(type='text', name='deal_name')
+			label(for='deal_desc', style="margin: 93px 0px;") Deal Desciption
+			textarea#deal_desc(name='desc')
+			label(for='member_field') Member Number
+			input#member_field(type='text', name='member_number')
+			label(for='date_field') Deal Expiry Date
+			input#date_field(type='text', name='expires', placeholder='yyyy-mm-dd')
+			label(for='file_field', style='margin-top: 13px;') Insert image or logo (optional)
+			input#file_field(type='file', name='image')
+			br
+			p(style='clear:both') Please note: for best results, ensure that the image you upload is at least 960 pixels wide. The expiry date is final and cannot be changed. Your deal will be approved or declined by Bartercard within two days.
+			br
+			button(type='submit').button Submit
+
+	script.
+		$(function() {
+			$('[name=expires]').datepicker({minDate: +3, dateFormat: 'yy-mm-dd'});
+		});

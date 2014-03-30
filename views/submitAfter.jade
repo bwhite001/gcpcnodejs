@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	if error
+		p#no_current= "Something went wrong!"
+		if errorMessage != null
+			p(style='text-align:center')= errorMessage
+	else
+		p#no_current= "Submitted Successfully!"
+	a(href="/").button.forohfor Back
