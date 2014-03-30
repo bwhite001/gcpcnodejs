@@ -1,0 +1,19 @@
+{
+  "name": "bartercard",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "n/a",
+  "dependencies": {
+    "sequelize": "~1.7.0-rc6",
+    "jade": "~1.1.5",
+    "express": "~3.4.8",
+    "moment":"~2.5.1",
+    "pg": "~2.11.1",
+    "forever": "~0.10.11"
+  }
+}
