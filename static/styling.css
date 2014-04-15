@@ -48,3 +48,9 @@ fieldset .row {
     background-repeat: no-repeat;
     background-position: 50%;
 }
+.contact_border {
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-radius: 10px;
+}

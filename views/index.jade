@@ -1,31 +1,10 @@
 extends layout
 
 block content
-	if deal != null && deals.length > 0
+	if deals.length > 0
 		.container-fluid
 			each deal in deals
-				.col-md-12
-					.thumbnail
-						.caption.text-center
-							h3.hotdeal_busname= deal.deal_name
-								br
-								small.hotdeal_dealname= "By "+deal.business_name
-
-						h5.hotdeal_expires(style='margin-left:10px')= 'Expires: ' + deal.expires.toDateString()
-						if deal.has_image
-							.deal_img(style='background-image:url("/uploads/'+deal.id+'.'+deal.file_type+'")')
-						else
-							.deal_img(style='background-image:url("/images/logo.jpg")')
-
-						if deal.desc != null && deal.desc != ""
-							p#hotdeal_desc= deal.desc
-
-						h3.text-center Contact Infomation
-							.row
-								
-
-
-
+				include deal_data
 
 
 	else

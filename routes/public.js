@@ -11,10 +11,7 @@ exports.index = function(req, res) {
 	var date = new Date();
 	date.setHours(0, 0, 0, 0);
 
-	if(isNaN(req.params.id))
-		req.params.id = 0;
-
-	var deals = Deal.findAll({
+	Deal.findAll({
 		where: {
 			approved: true,
 			expires: {gte: date}
@@ -24,64 +21,20 @@ exports.index = function(req, res) {
 	.error(function(err) {res.send(500, 'Internal Server Error, '+err);})
 
 	.success(function(deals){
-		if(deals.length == 0)
-			render(deals);
-		else
-			if(req.params.id != null)
-				hasId(req.params.id, deals);
-			else
-				noId(deals);
-	});
-	var hasId = function(id, deals)
-	{
-		Deal.find({
-			where: {
-				approved: true,
-				expires: {gte: date},
-				id: req.params.id
-			}
-		})
-		.success(function(deal) {
-			if(deal != null)
-			{
-				render(deals, deal);
-			}
-			else
-			{
-				noId(deals);
-			}
-		})
-	}
-	var noId = function(deals)
-	{
-		var deal = deals[0];
-		render(deals, deal);
-	}
-
-	var render = function(deals, deal)
-	{
-		if(deals.length == 0 || deal == null)
-			res.render('index', {
-				deal: null,
-				deals: deals,
-				navbar: navbar,
-				nav_loc: navbar.home.title,
-			});
-		else
-			res.render('index', {
-				deal: deal,
-				deals: deals,
-				navbar: navbar,
-				nav_loc: navbar.home.title,
-			});
-	}
+		res.render('index', {
+			deals: deals,
+			navbar: navbar,
+			nav_loc: navbar.home.title
+		});
+	})
 };
 
 exports.submit = function(req, res) {
 	res.render('submit', {
 		navbar: navbar,
 		nav_loc: navbar.submit.title,
-		error: !!req.query.error
+		error: !!req.query.error,
+		deal: {}
 	});
 };
 

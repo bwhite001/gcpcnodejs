@@ -21,6 +21,9 @@ var Deal = connection.define('Deal', {
 		type: Sequelize.BOOLEAN,
 		defaultValue: false
 	},
+	contact_number: Sequelize.STRING,
+	contact_email: Sequelize.STRING,
+	contact_address: Sequelize.STRING,
 	file_type: Sequelize.STRING
 });
 

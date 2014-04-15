@@ -109,3 +109,28 @@ exports.clearexpired = function(req, res) {
 		})
 		.error(function(err) {res.send(500, 'Internal Server Error, '+err);})
 };
+
+exports.updateform = function(req, res) {
+	Deal.find(req.params.id)
+		.success(function(deal) {
+			res.render('submit', {deal: deal, navbar: navbar, admin:true});
+		})
+}
+
+exports.successUpdatePage = function(req, res) {
+	res.render('submitAfter', {navbar: navbar, error: false, update:true, dealname: req.query.dealname, admin:true});
+};
+
+exports.update = function(req, res) {
+	Deal.find(req.params.id)
+		.success(function(deal) {
+			if (!deal)
+				res.redirect('/error');
+
+			deal.updateAttributes(req.body)
+			.success(function() {
+				res.redirect('/successupdate?dealname='+req.body.deal_name);
+			})
+		})
+		.error(function(err) {res.send(500, 'Internal Server Error, '+err);})
+}

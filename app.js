@@ -39,8 +39,13 @@ app.get('/dashboard/:approved/:id', back_auth, routes.backend.deal);
 app.get('/dashboard/:id', back_auth, routes.backend.deal);
 app.put('/set/:id', back_auth, routes.backend.approve);
 app.delete('/set/:id', back_auth, routes.backend.remove);
-app.get('/deals', routes.public.index);
+app.get('/update/:id', back_auth, routes.backend.updateform);
+app.post('/update/:id', back_auth, routes.backend.update);
+
+app.get('/successupdate', back_auth,  routes.backend.successUpdatePage);
+
 app.get('/', routes.public.index);
+
 
 app.get('/api/deals', routes.api.deals);
 
