@@ -1,0 +1,52 @@
+.col-md-12
+	.thumbnail
+		.row
+			.col-md-6
+				.caption.text-center
+					h1.hotdeal_busname= deal.deal_name
+						br
+						small.hotdeal_dealname= "By "+deal.business_name
+			.col-md-4.pull-right
+				if (deal.website != null && deal.website != "") || (deal.contact_number != null && deal.contact_number != "") || (deal.contact_number != null && deal.contact_number != "") || (deal.contact_email != null && deal.contact_email != "")
+					table.table.table-hover.text-center.contact_border
+						tr
+							th(colspan='2').text-center Contact Details
+						
+						if deal.contact_number != null && deal.contact_number != ""
+							tr
+								td
+									.glyphicon.glyphicon-earphone
+								td
+									p= deal.contact_number
+						
+						if deal.contact_email != null && deal.contact_email != ""
+							tr
+								td
+									.glyphicon.glyphicon-envelope
+								td
+									p= deal.contact_email
+
+						if deal.website != null && deal.website != ""
+							tr
+								td
+									.glyphicon.glyphicon-briefcase
+								td
+									a(href=deal.website)= deal.website
+
+						if deal.contact_address != null && deal.contact_address != ""
+							tr
+								td
+									.glyphicon.glyphicon-home
+								td
+									p= deal.contact_address
+
+		h3.text-center.hotdeal_expires(style='margin-left:10px')= 'Expires: ' + deal.expires.toDateString()
+
+		if deal.desc != null && deal.desc != ""
+			p.text-center
+				i= deal.desc
+
+		if deal.has_image
+			.deal_img(style='background-image:url("/uploads/'+deal.id+'.'+deal.file_type+'")')
+		else
+			.deal_img(style='background-image:url("/images/no_image.png")')
