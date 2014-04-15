@@ -4,6 +4,6 @@
  */
 
 var Sequelize = require('sequelize');
-var dbUrl = process.env.DATABASE_URL || 'postgres://root:root@localhost:5432/bcard';
+var dbUrl = process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/bcard';
 var connection = new Sequelize(dbUrl, {dialect: 'postgres', protocol: 'postgres'});
 module.exports = connection;

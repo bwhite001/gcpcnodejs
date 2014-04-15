@@ -1,0 +1,50 @@
+body {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#logo_content {
+    height: 48px;
+    float: left;
+    background-image: url("./images/logo.png");
+    width: 206px;
+    background-repeat: no-repeat;
+    margin: 12px;
+    margin-top: 6px;
+}
+.navbar-brand {
+    padding: 0px;
+}
+#subtitle_content {
+    font-size: 0.8em;
+    display: block;
+    float: left;
+    margin-left: -165px;
+    margin-top: 46px;
+}
+button.navbar-toggle {
+    margin: 12px;
+    padding: 15px;
+}
+.navbar-nav>li>a {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    line-height: 20px
+}
+fieldset .row {
+    margin-bottom: 10px;
+}
+.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus {
+    color: #333;
+    background-color: rgba(117, 117, 117, 0.1);
+}
+.deal_img {
+    width: 92%;
+    padding: 20%;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+    background-color: #EEE;
+    border-radius: 2px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}

@@ -1,29 +1,75 @@
 extends layout
 
 block content
-	h1 Submit a Hot Deal!
-	#form-wrapper
-		if (error)
-			p.alert.error There was an error submitting the deal for review. Please ensure all fields are filled correctly.
-		form(action='/submit', method='post', enctype='multipart/form-data')
-			label(for='bus_name_field') Business Name
-			input#bus_name_field(type='text', name='business_name')
-			label(for='deal_name_field') Name of Deal
-			input#deal_name_field(type='text', name='deal_name')
-			label(for='deal_desc', style="margin: 93px 0px;") Deal Desciption
-			textarea#deal_desc(name='desc')
-			label(for='member_field') Member Number
-			input#member_field(type='text', name='member_number')
-			label(for='date_field') Deal Expiry Date
-			input#date_field(type='text', name='expires', placeholder='yyyy-mm-dd')
-			label(for='file_field', style='margin-top: 13px;') Insert image or logo (optional)
-			input#file_field(type='file', name='image')
-			br
-			p(style='clear:both') Please note: for best results, ensure that the image you upload is at least 960 pixels wide. The expiry date is final and cannot be changed. Your deal will be approved or declined by Bartercard within two days.
-			br
-			button(type='submit').button Submit
+	.container-fluid.well
+		.row
+			.col-md-12
+					form.form-horizontal(action='/submit', method='post', enctype='multipart/form-data')
+						fieldset
+							legend.text-center Submit a Hot Deal!
+
+							.row
+								.form-group
+									label.col-md-3.control-label(for='deal_name_field') Name Of Deal
+									.col-md-8
+										input.form-control#deal_name_field(type='text', name='deal_name')
+
+							.row
+								.form-group
+									label.col-md-3.control-label(for='deal_desc') Deal Desciption
+									.col-md-8
+										textarea.form-control#deal_desc(type='text', name='deal_desc', rows='5', style="resize: none;")
+
+							.row
+								.form-group
+									label.col-md-3.control-label(for='date_field') Deal Expiry Date
+									.col-md-8
+										input.form-control#date_field(type='text', name='expires', placeholder='yyyy-mm-dd')
+
+							.row
+								.form-group
+									label.col-md-3.control-label(for='file_field') Insert image or logo (optional)
+									.col-md-8
+										input#file_field(type='file', name='image')
+							.row
+								p.col-md-8.col-md-offset-2 Please note: for best results, ensure that the image you upload is at least 	120 pixels wide. The expiry date is final and cannot be changed. Your deal will be approved or declined by Bartercard within two days.
+					fieldset
+							legend.text-center Business Contact Infromation
+
+							.row
+								.form-group
+									label.col-md-3.control-label(for='bus_name_field') Business Name
+									.col-md-8
+										input.form-control#bus_name_field(type='text', name='business_name')
+
+							.row
+								.form-group
+									label.col-md-3.control-label(for='member_field') Member Number
+									.col-md-8
+										input.form-control#member_field(type='number', name='member_number')
+
+							.row
+								.form-group
+									label.col-md-3.control-label(for='contact_number') Phone Number
+									.col-md-8
+										input.form-control#contact_number(type='text', name='contact_number')
+							.row
+								.form-group
+									label.col-md-3.control-label(for='contact_email') Email
+									.col-md-8
+										input.form-control#contact_email(type='text', name='contact_email')
+							.row
+								.form-group
+									label.col-md-3.control-label(for='contact_address') Address
+									.col-md-8
+										textarea.form-control#contact_address(type='text', name='contact_address',rows='5', style="resize: none;")
+
+							.row
+								.form-group
+									.col-md-9.col-md-offset-2.text-right
+										button(type='submit').btn.btn-primary.btn-lg Submit
 
 	script.
 		$(function() {
-			$('[name=expires]').datepicker({minDate: +3, dateFormat: 'yy-mm-dd'});
+			$('#date_field').datepicker({minDate: +3, dateFormat: 'yy-mm-dd'});
 		});

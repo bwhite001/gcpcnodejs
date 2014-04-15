@@ -1,10 +1,16 @@
 extends layout
 
 block content
-	if error
-		p#no_current= "Something went wrong!"
-		if errorMessage != null
-			p(style='text-align:center')= errorMessage
-	else
-		p#no_current= "Submitted Successfully!"
-	a(href="/").button.forohfor Back
+	.jumbotron.text-center
+		if error
+			p#no_current= "Something went wrong!"
+			if errorMessage != null
+				p(style='text-align:center')= errorMessage
+		else
+			p Thank you for submitting your Hot Deal.
+			p Once approved your deal will be live, this may take two working days.
+			p Please view our Privacy Policy 
+				a(target='blank', href="http://www.bartercard.com.au/About/Privacy.html") Here
+		a.btn.btn-default.btn-sm(href="/")
+				span.glyphicon.glyphicon-chevron-left
+				span Go Back

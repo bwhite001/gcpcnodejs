@@ -1,49 +1,66 @@
 extends layout
 block content
-	a.button.deal(href=(approved ? '/dashboard/approved' : '/dashboard')) Go Back
-	.hotdeal.deal
-		h1#hotdeal_busname= deal.deal_name
-		h2#hotdeal_dealname= "By "+deal.business_name
-		h3#hotdeal_expires= 'Expires: ' + deal.expires.toDateString()
-		if deal.desc != null && deal.desc != ""
-			p#hotdeal_desc= deal.desc
-		#hotdeal_image
-			if deal.has_image
-				#deal_image(style='background-image: url("/uploads/'+deal.id+'.'+deal.file_type+'")')
-			else
-				#deal_image(style='background-image: url("/images/logo.jpg")').logo
-					#deal_no_image No Image Provided
-		if(!approved)
-			button.button.action-approve(data-id=deal.id +":"+ deal.deal_name) Approve
-		button.button.action-remove(data-id=deal.id +":"+ deal.deal_name) Delete
-		div(style='clear:both')
-	
-	script.
-		function PerformRequest(self, method, id, name) {
-			var approved = (method == 'put') ? "Approve" : "Delete";
-			var r=confirm("Do You Wish to "+ approved +" "+ name + "?");
-			if (r==true)
-				$.ajax({
-					type: method,
-					url: '/set/' + id,
-					success: function() {
-						location.reload(true);
-					},
-					error: function() {
-						alert('There was an error completing the action.');
-						location.reload(true);
-					}
+	.text-center
+		.btn-group(style='margin-bottom:20px')
+			a.btn.btn-default.btn-lg(href=(approved ? '/dashboard/approved' : '/dashboard'))
+				span.glyphicon.glyphicon-chevron-left
+				span Go Back
+			button.btn.btn-default.btn-lg
+				span.glyphicon.glyphicon-pencil
+				span Edit
+			if(!approved)
+				button#action-approve.btn.btn-default.btn-lg(data-id=deal.id +":"+ deal.deal_name)
+					span.glyphicon.glyphicon-ok
+					span Approve
+
+			button#action-remove.btn.btn-default.btn-lg(data-id=deal.id +":"+ deal.deal_name)
+				span.glyphicon.glyphicon-remove
+				span Delete
+
+
+	.well
+		.hotdeal.deal
+			.text-center
+				h1= deal.deal_name
+					small(style="margin-left: 20px;")= "By "+deal.business_name
+			h3.pull-right= 'Expires: ' + deal.expires.toDateString()
+
+			if deal.desc != null && deal.desc != ""
+				p#hotdeal_desc= deal.desc
+			#hotdeal_image
+				if deal.has_image
+					#deal_image(style='background-image: url("/uploads/'+deal.id+'.'+deal.file_type+'")')
+				else
+					#deal_image(style='background-image: url("/images/logo.jpg")').logo
+						#deal_no_image No Image Provided
+			div(style='clear:both')
+		
+		script.
+			function PerformRequest(self, method, id, name) {
+				var approved = (method == 'put') ? "Approve" : "Delete";
+				var r=confirm("Do You Wish to "+ approved +" "+ name + "?");
+				if (r==true)
+					$.ajax({
+						type: method,
+						url: '/set/' + id,
+						success: function() {
+							location.reload(true);
+						},
+						error: function() {
+							alert('There was an error completing the action.');
+							location.reload(true);
+						}
+					});
+			}
+
+			$(function() {
+				$('#action-approve').click(function() {
+					var data = $(this).attr('data-id').split(":");
+					PerformRequest(this, 'put', data[0] , data[1]);
 				});
-		}
 
-		$(function() {
-			$('.action-approve').click(function() {
-				var data = $(this).attr('data-id').split(":");
-				PerformRequest(this, 'put', data[0] , data[1]);
+				$('#action-remove').click(function() {
+					var data = $(this).attr('data-id').split(":");
+					PerformRequest(this, 'delete',data[0] , data[1]);
+				});
 			});
-
-			$('.action-remove').click(function() {
-				var data = $(this).attr('data-id').split(":");
-				PerformRequest(this, 'delete',data[0] , data[1]);
-			});
-		});

@@ -25,7 +25,6 @@ var back_auth = express.basicAuth('bartercard2014', '4jL79d2');
 
 
 
-app.get('/deals', routes.public.index);
 app.get('/submit', routes.public.submit);
 app.get('/success', routes.public.successPage);
 app.get('/error', routes.public.errorPage);
@@ -40,8 +39,10 @@ app.get('/dashboard/:approved/:id', back_auth, routes.backend.deal);
 app.get('/dashboard/:id', back_auth, routes.backend.deal);
 app.put('/set/:id', back_auth, routes.backend.approve);
 app.delete('/set/:id', back_auth, routes.backend.remove);
-app.get('/deals/:id', routes.public.index);
+app.get('/deals', routes.public.index);
 app.get('/', routes.public.index);
+
+app.get('/api/deals', routes.api.deals);
 
 
 //if not in routes

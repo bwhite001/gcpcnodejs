@@ -2,21 +2,32 @@ extends layout
 
 block content
 	if deal != null && deals.length > 0
-		#deal_content
-			for n in deals
-				.hotdeal
-					h1#hotdeal_busname= deal.deal_name
-					h2#hotdeal_dealname= "By "+deal.business_name
-					h3#hotdeal_expires= 'Expires: ' + deal.expires.toDateString()
-					if deal.desc != null && deal.desc != ""
-						p#hotdeal_desc= deal.desc
-					#hotdeal_image
+		.container-fluid
+			each deal in deals
+				.col-md-12
+					.thumbnail
+						.caption.text-center
+							h3.hotdeal_busname= deal.deal_name
+								br
+								small.hotdeal_dealname= "By "+deal.business_name
+
+						h5.hotdeal_expires(style='margin-left:10px')= 'Expires: ' + deal.expires.toDateString()
 						if deal.has_image
-							#deal_image(style='background-image: url("/uploads/'+deal.id+'.'+deal.file_type+'")')
+							.deal_img(style='background-image:url("/uploads/'+deal.id+'.'+deal.file_type+'")')
 						else
-							#deal_image(style='background-image: url("/images/logo.jpg")').logo
-								#deal_no_image No Image Provided
+							.deal_img(style='background-image:url("/images/logo.jpg")')
+
+						if deal.desc != null && deal.desc != ""
+							p#hotdeal_desc= deal.desc
+
+						h3.text-center Contact Infomation
+							.row
+								
+
+
+
 
 
 	else
-		p#no_current No Hot Deals At this time!
+		.jumbotron
+			p.text-center#no_current No Hot Deals At this time!
