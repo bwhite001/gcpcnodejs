@@ -2,8 +2,6 @@ form.form-horizontal(action=(typeof(deal.id) === 'undefined')? '/submit' : '/upd
 	fieldset
 		legend.text-center= (typeof(deal.id) === 'undefined')? 'Submit a Hot Deal!' : 'Update Deal'
 
-		p= typeof(deal.id)
-
 		.row
 			.form-group
 				label.col-md-3.control-label(for='deal_name_field') Name Of Deal
