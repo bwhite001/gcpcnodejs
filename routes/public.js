@@ -73,7 +73,7 @@ exports.process = function(req, res) {
 				res.redirect('/success');
 		})
 		.error(function(error) {
-			es.render('submitAfter', {navbar: navbar, error: true, errorMessage: err});
+			res.render('submitAfter', {navbar: navbar, error: true, errorMessage: err});
 		});
 };
 
