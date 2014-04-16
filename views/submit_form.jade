@@ -1,25 +1,27 @@
-form.form-horizontal(action=(typeof(deal) === 'undefined')? '/submit' : '/update/'+deal.id, method='post', enctype='multipart/form-data')
+form.form-horizontal(action=(typeof(deal.id) === 'undefined')? '/submit' : '/update/'+deal.id, method='post', enctype='multipart/form-data')
 	fieldset
-		legend.text-center= (typeof(deal) === 'undefined')? 'Submit a Hot Deal!' : 'Update Deal'
+		legend.text-center= (typeof(deal.id) === 'undefined')? 'Submit a Hot Deal!' : 'Update Deal'
+
+		p= typeof(deal.id)
 
 		.row
 			.form-group
 				label.col-md-3.control-label(for='deal_name_field') Name Of Deal
 				.col-md-8
-					input.form-control#deal_name_field(type='text', name='deal_name', value=(typeof(deal) === 'undefined')? "" : deal.deal_name)
+					input.form-control#deal_name_field(type='text', name='deal_name', value=(typeof(deal.id) === 'undefined')? "" : deal.deal_name)
 
 		.row
 			.form-group
 				label.col-md-3.control-label(for='deal_desc') Deal Desciption
 				.col-md-8
 					textarea.form-control#deal_desc(type='text', name='desc', rows='5', style="resize: none;")
-						=(typeof(deal) === 'undefined')? "" : deal.desc
+						=(typeof(deal.id) === 'undefined')? "" : deal.desc
 
 		.row
 			.form-group
 				label.col-md-3.control-label(for='date_field') Deal Expiry Date
 				.col-md-8
-					input.form-control#date_field(type='text', name='expires', placeholder='yyyy-mm-dd', value=(typeof(deal) === 'undefined')? "" : deal.expires)
+					input.form-control#date_field(type='text', name='expires', placeholder='yyyy-mm-dd', value=(typeof(deal.id) === 'undefined')? "" : deal.expires)
 
 		if(deal)
 			.row
@@ -36,35 +38,35 @@ form.form-horizontal(action=(typeof(deal) === 'undefined')? '/submit' : '/update
 			.form-group
 				label.col-md-3.control-label(for='bus_name_field') Business Name
 				.col-md-8
-					input.form-control#bus_name_field(type='text', name='business_name', value=(typeof(deal) === 'undefined')? "" : deal.business_name)
+					input.form-control#bus_name_field(type='text', name='business_name', value=(typeof(deal.id) === 'undefined')? "" : deal.business_name)
 
 		.row
 			.form-group
 				label.col-md-3.control-label(for='member_field') Member Number
 				.col-md-8
-					input.form-control#member_field(type='number', name='member_number', value=(typeof(deal) === 'undefined')? "" : deal.member_number)
+					input.form-control#member_field(type='number', name='member_number', value=(typeof(deal.id) === 'undefined')? "" : deal.member_number)
 
 		.row
 			.form-group
 				label.col-md-3.control-label(for='contact_number') Phone Number
 				.col-md-8
-					input.form-control#contact_number(type='text', name='contact_number', value=(typeof(deal) === 'undefined')? "" : deal.contact_number)
+					input.form-control#contact_number(type='text', name='contact_number', value=(typeof(deal.id) === 'undefined')? "" : deal.contact_number)
 		.row
 			.form-group
 				label.col-md-3.control-label(for='contact_email') Email
 				.col-md-8
-					input.form-control#contact_email(type='text', name='contact_email', value=(typeof(deal) === 'undefined')? "" : deal.contact_email)
+					input.form-control#contact_email(type='text', name='contact_email', value=(typeof(deal.id) === 'undefined')? "" : deal.contact_email)
 		.row
 			.form-group
 				label.col-md-3.control-label(for='website') Website
 				.col-md-8
-					input.form-control#contact_email(type='text', name='website', value=(typeof(deal) === 'undefined')? "" : deal.website)
+					input.form-control#contact_email(type='text', name='website', value=(typeof(deal.id) === 'undefined')? "" : deal.website)
 		.row
 			.form-group
 				label.col-md-3.control-label(for='contact_address') Address
 				.col-md-8
 					textarea.form-control#contact_address(type='text', name='contact_address',rows='5', style="resize: none;")
-						=(typeof(deal) === 'undefined')? "" : deal.contact_address
+						=(typeof(deal.id) === 'undefined')? "" : deal.contact_address
 
 		.row
 			.form-group

@@ -24,7 +24,7 @@
 								td
 									.glyphicon.glyphicon-envelope
 								td
-									p= deal.contact_email
+									a(href='mailto:'+deal.contact_email+'?Subject=Bartercard%20-%20Hotdeal%20for%20'+deal.deal_name, target='_top')= deal.contact_email
 
 						if deal.website != null && deal.website != ""
 							tr
