@@ -1,13 +1,20 @@
 .col-md-12
 	.thumbnail
 		.row
-			.col-md-6
-				.caption.text-center
-					h1.hotdeal_busname= deal.deal_name
-						br
-						small.hotdeal_dealname= "By "+deal.business_name
-			.col-md-4.pull-right
-				if (deal.website != null && deal.website != "") || (deal.contact_number != null && deal.contact_number != "") || (deal.contact_number != null && deal.contact_number != "") || (deal.contact_email != null && deal.contact_email != "")
+			if (deal.website != null && deal.website != "") || (deal.contact_number != null && deal.contact_number != "") || (deal.contact_number != null && deal.contact_number != "") || (deal.contact_email != null && deal.contact_email != "")
+				.col-md-6
+					.caption.text-center
+						h1.hotdeal_busname= deal.deal_name
+							br
+							small.hotdeal_dealname= "By "+deal.business_name
+			else
+				.col-md-12
+					.caption.text-center
+						h1.hotdeal_busname= deal.deal_name
+							br
+							small.hotdeal_dealname= "By "+deal.business_name
+			if (deal.website != null && deal.website != "") || (deal.contact_number != null && deal.contact_number != "") || (deal.contact_number != null && deal.contact_number != "") || (deal.contact_email != null && deal.contact_email != "")
+				.col-md-4.pull-right
 					table.table.table-hover.text-center.contact_border
 						tr
 							th(colspan='2').text-center Contact Details
