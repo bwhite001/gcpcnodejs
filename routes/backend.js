@@ -83,13 +83,14 @@ exports.remove = function(req, res) {
 			if(deal.has_image)
 			{
 				imageloc = process.cwd() + '/static/uploads/'+deal.id+'.'+deal.file_type;
-				fs.unlink(imageloc, function (err) {
-				  if (err) 
-				  {
-				  	throw err;
-				  	res.send(500, err);
-				  }
-				});
+				if(fs.existsSync(imageloc))
+					fs.unlink(imageloc, function (err) {
+					  if (err) 
+					  {
+					  	throw err;
+					  	res.send(500, err);
+					  }
+					});
 			}
 			Deal.destroy({id: deal.id})
 			.success(function() {

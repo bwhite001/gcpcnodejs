@@ -51,8 +51,6 @@ exports.process = function(req, res) {
 	else
 		req.body.file_type = '';
 
-	console.log(req.body);
-
 	Deal.create(req.body)
 		.success(function(deal) {
 			if(deal.dataValues.has_image)
