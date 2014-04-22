@@ -15,21 +15,21 @@ html
 		.container
 			nav(class='navbar navbar-default',style='min-height:72px', role="navigation")
 					.navbar-header
-						button(type='button', data-toggle="collapse",data-target="#navbar-collapse-main").navbar-toggle
-							span.sr-only Toggle navigation
-							span.icon-bar
-							span.icon-bar
-							span.icon-bar
-						a(class='navbar-brand', href="http://www.bartercard.com.au")
-							#logo_content
-							span#subtitle_content= "Hot Deals"
-								if(admin)
-									= " Adminstration"
+							button(type='button', data-toggle="collapse",data-target="#navbar-collapse-main").navbar-toggle
+								span.sr-only Toggle navigation
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+							a(class='navbar-brand', href="http://www.bartercard.com.au")
+								#logo_content
+								span#subtitle_content= "Hot Deals"
+									if(admin)
+										= " Adminstration"
 					.navbar-collapse.collapse#navbar-collapse-main
 						.navbar-right
 							ul.nav.navbar-nav
 								each menu in navbar
 									li(class=(menu.title == nav_loc ? 'active' : ''))
 										a(href=menu.url)= menu.title
-										
+											
 			block content
