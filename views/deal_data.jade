@@ -62,10 +62,9 @@
 			.deal_img(style='background-image:url("/images/no_image.png")')
 		.row
 			.col-md-3.col-md-offset-1
-				.fb-share-button(data-href="http://bartercard.whiteecho.com/deal/5",data-type="link")
-					a.btn.btn-block.btn-social.btn-facebook
-						i.fa.fa-facebook
-						="Post to Facebook"
+				a.btn.btn-block.btn-social.btn-facebook(id='facey'+deal.id, href="")
+					i.fa.fa-facebook
+					="Post to Facebook"
 			.col-md-4
 
 			.col-md-3
@@ -74,7 +73,9 @@
 					="Tweet This"
 
 		script(type='text/javascript').
+			furl = "https://www.facebook.com/sharer/sharer.php?u=http://bartercard.whiteecho.com/deal/#{deal.id}";
 			turl = "http://twitter.com/home?status= I Found this cool deal on Bartercard. #{deal.deal_name} see here: http://bartercard.whiteecho.com/deal/#{deal.id}";
 			console.log(turl);
+			console.log(furl);
 			$("#twitter#{deal.id}").attr("href",turl);
-
+			$("#facey#{deal.id}").attr("href",furl);
