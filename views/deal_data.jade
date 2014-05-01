@@ -62,30 +62,19 @@
 			.deal_img(style='background-image:url("/images/no_image.png")')
 		.row
 			.col-md-3.col-md-offset-1
-				a.btn.btn-block.btn-social.btn-facebook(id='facey'+deal.id, href="")
-					i.fa.fa-facebook
-					="Post to Facebook"
+				.fb-share-button(data-href="http://bartercard.whiteecho.com/deal/5",data-type="link")
+					a.btn.btn-block.btn-social.btn-facebook
+						i.fa.fa-facebook
+						="Post to Facebook"
 			.col-md-4
 
 			.col-md-3
 				a.btn.btn-block.btn-social.btn-twitter(id='twitter'+deal.id, href="")
 					i.fa.fa-twitter
 					="Tweet This"
-		if(deals)
-			script(type='text/javascript').
-				var furl = "http://www.facebook.com/share.php?u="+location.href+"deal/#{deal.id}&t=Bartercard Hot Deals #{deal.deal_name}";
-				var turl = "http://twitter.com/home?status=Bartercard Hot Deals #{deal.deal_name} see here: "+location.href+"deal/#{deal.id}";
-		else
-			script(type='text/javascript').
-				var furl = "http://www.facebook.com/share.php?u="+location.href+"&t=Bartercard Hot Deals #{deal.deal_name}";
-				var turl = "http://twitter.com/home?status=Bartercard Hot Deals #{deal.deal_name} see here: "+location.href
 
 		script(type='text/javascript').
-			furl = encodeURIComponent(furl);
-			turl = encodeURIComponent(turl);
-
-			console.log(furl);
+			turl = "http://twitter.com/home?status= I Found this cool deal on Bartercard. #{deal.deal_name} see here: http://bartercard.whiteecho.com/deal/#{deal.id}";
 			console.log(turl);
-			$("#facey#{deal.id}").attr("href",furl);
 			$("#twitter#{deal.id}").attr("href",turl);
 
