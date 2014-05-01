@@ -1,0 +1,13 @@
+extends layout
+block title
+	=" " + deal.deal_name
+
+block content
+	if (deal)
+		.container-fluid
+			include deal_data
+
+
+	else
+		.jumbotron
+			p.text-center#no_current The Page You're Looking for doesn't exist 

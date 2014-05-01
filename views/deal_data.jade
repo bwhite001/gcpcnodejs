@@ -38,7 +38,10 @@
 								td
 									.glyphicon.glyphicon-briefcase
 								td
-									a(href=deal.website)= deal.website
+									if(deal.website.length > 46)
+										a(href=deal.website)= See Site
+									else
+										a(href=deal.website)= deal.website
 
 						if deal.contact_address != null && deal.contact_address != ""
 							tr
@@ -71,8 +74,8 @@
 
 		script(type='text/javascript').
 			var val = #{deal.id};
-			var furl = "http://www.facebook.com/share.php?u="+location.href+"deal/#{deal.id}&t=Bartercard Hot Deals #{deal.deal_name}";
-			var turl = "http://twitter.com/home?status=Bartercard Hot Deals #{deal.deal_name} see here:"+location.href+"deal/#{deal.id}";
+			var furl = "http://www.facebook.com/share.php?u='"+location.href+"deal/#{deal.id}'&t=Bartercard Hot Deals #{deal.deal_name}";
+			var turl = "http://twitter.com/home?status=Bartercard Hot Deals #{deal.deal_name} see here: "+location.href+"deal/#{deal.id}";
 			$("#facey#{deal.id}").attr("href",furl);
 			$("#twitter#{deal.id}").attr("href",turl);
 
