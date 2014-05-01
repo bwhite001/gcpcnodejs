@@ -1,6 +1,7 @@
 extends layout
 block title
-	=" " + deal.deal_name
+	if (deal)
+		=" " + deal.deal_name
 
 block content
 	if (deal)
