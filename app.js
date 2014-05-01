@@ -43,7 +43,7 @@ app.get('/update/:id', back_auth, routes.backend.updateform);
 app.post('/update/:id', back_auth, routes.backend.update);
 
 app.get('/successupdate', back_auth,  routes.backend.successUpdatePage);
-
+app.get('/deal/:id', routes.public.deal_index)
 app.get('/', routes.public.index);
 
 

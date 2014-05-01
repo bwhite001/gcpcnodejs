@@ -29,6 +29,18 @@ exports.index = function(req, res) {
 	})
 };
 
+exports.deal_index = function(req, res) {
+	Deal.find(req.params.id)
+	.success(function(deal){
+		res.render('deal_index', {
+			deal: deal,
+			navbar: navbar,
+			nav_loc: navbar.home.title
+		});
+	})
+	.error(function(err) {res.render('forohfor', {navbar: navbar});})
+}
+
 exports.submit = function(req, res) {
 	res.render('submit', {
 		navbar: navbar,
