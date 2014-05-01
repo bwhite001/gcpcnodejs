@@ -75,12 +75,17 @@
 			script(type='text/javascript').
 				var furl = "http://www.facebook.com/share.php?u="+location.href+"deal/#{deal.id}&t=Bartercard Hot Deals #{deal.deal_name}";
 				var turl = "http://twitter.com/home?status=Bartercard Hot Deals #{deal.deal_name} see here: "+location.href+"deal/#{deal.id}";
-				$("#facey#{deal.id}").attr("href",furl);
-				$("#twitter#{deal.id}").attr("href",turl);
 		else
 			script(type='text/javascript').
 				var furl = "http://www.facebook.com/share.php?u="+location.href+"&t=Bartercard Hot Deals #{deal.deal_name}";
-				var turl = "http://twitter.com/home?status=Bartercard Hot Deals #{deal.deal_name} see here: "+location.href;
-				$("#facey#{deal.id}").attr("href",furl);
-				$("#twitter#{deal.id}").attr("href",turl);
+				var turl = "http://twitter.com/home?status=Bartercard Hot Deals #{deal.deal_name} see here: "+location.href
+
+		script(type='text/javascript').
+			furl = encodeURIComponent(furl);
+			turl = encodeURIComponent(turl);
+
+			console.log(furl);
+			console.log(turl);
+			$("#facey#{deal.id}").attr("href",furl);
+			$("#twitter#{deal.id}").attr("href",turl);
 
