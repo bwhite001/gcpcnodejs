@@ -13,5 +13,7 @@ app.get("/series/:id", routes.sessions.setseries);
 // Admin Routes
 app.get("/admin/dash", admin_auth, routes.admin.index);
 app.get("/admin/series", admin_auth, routes.admin.series);
+app.get("/admin/shooters", admin_auth, routes.admin.shooters);
+app.get("/admin/shooters/:letter", admin_auth, routes.admin.shooters);
 
 app.get("*", routes.public.redirect);

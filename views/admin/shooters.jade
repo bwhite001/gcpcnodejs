@@ -1,0 +1,61 @@
+extends ../layout
+
+block title 
+	= "Admin Series"
+
+
+block content
+	h1.page-header Shooters Adminstration
+
+
+	h3.subpage-header Shooter's lastname starting with #{letter}
+	
+	ul.pagination.text-center
+		- var next = letter.toUpperCase().charCodeAt(0)+1
+		
+		- var nextLetter = String.fromCharCode(next)
+		- var prev = letter.toUpperCase().charCodeAt(0)-1
+
+		- var prevLetter = String.fromCharCode(prev);
+		- if(prev < 65) prevLetter = "A"
+		- if(next > 90) nextLetter = "Z"
+
+
+		li(class=(prev<65 || shooterNums[prev-65] == 0)? "disabled" : "")
+			a(href=(prev<65 || shooterNums[prev-65] == 0)? "" : "/admin/shooters/"+prevLetter) &laquo; #{prevLetter}
+
+		each num,index in shooterNums
+			- var l = String.fromCharCode(index+65)
+			li(class=(num==0)? "disabled" : (l == letter)? "active" : "")
+				a(href=(num==0)? "" : "/admin/shooters/"+l) #{l}
+
+		li(class=(next>90 || shooterNums[next-65] == 0)? "disabled" : "")
+			a(href=(next>90 || shooterNums[next-65] == 0)? "" : "/admin/shooters/"+nextLetter) #{nextLetter} &raquo; 
+	if shooters.length > 0
+		table.table.table-striped
+			thead
+				tr
+					th Edit
+					th Name
+					th Gender
+					th Grade
+					th Junior
+					th Email
+			tbody
+				each s in shooters
+					tr
+						td
+							a(href="#")
+								span.glyphicon(class="glyphicon-pencil", style='margin-right: 10px')
+								=Edit
+						td= s.firstname + " " + s.lastname
+						td= (s.gender) ? "M" : "F"
+						td= grades[s.grade].grade
+						td= (s.junior) ? "Y" : "N"
+						td= s.email
+	else
+		p.text-center There Are No Shooters With Lastname of #{letter}
+
+
+
+	
