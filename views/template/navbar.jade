@@ -1,52 +1,60 @@
-.navbar.navbar-inverse(role='navigation')
+.navbar.navbar-inverse(role='navigation', style='border-radius: 0px;')
 	.container-fluid
-		.navbar-header
-			button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-				span.sr-only Toggle navigation
-				span.icon-bar
-				span.icon-bar
-				span.icon-bar
-			a.navbar-brand(href='/') GCPC ACSS
-			if user != null
-				.navbar-right.navbar-brand(style='font-size: 0.9em;font-style: italic;')
-					span= "Logged in as: " + user.name
-					if user.admin
-						if user.is_super
-							span(style='margin-left: 5px') (Super Admin)
-						else
-							span(style='margin-left: 5px') (Admin)
+		.row
+			.navbar-header
+				button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.navbar-brand(href='/') GCPC ACSS
 
-		if user == null
-			.collapse.navbar-collapse
-				form.navbar-form.form-inline.navbar-form.navbar-right(role='form', method='post', action='/login')
-					.form-group
-						label.sr-only(for="usernamelogin") Username:
-						input.form-control#usernamelogin(type="text",name='username', placeholder="Username")
-					.form-group
-						label.sr-only(for="passwordlogin") Password:
-						input.form-control#passwordlogin(type="password",name='password', placeholder="Password")
-					button.btn.btn-default(type="submit") Sign in
-		else
-			.collapse.navbar-collapse
-				if navbar != null
-					ul.nav.navbar-nav.navbar-right
-						if navbar.home != null
+			if user == null
+				.collapse.navbar-collapse
+					form.navbar-form.form-inline.navbar-form.navbar-right(role='form', method='post', action='/login')
+						.form-group
+							label.sr-only(for="usernamelogin") Username:
+							input.form-control#usernamelogin(type="text",name='username', placeholder="Username")
+						.form-group
+							label.sr-only(for="passwordlogin") Password:
+							input.form-control#passwordlogin(type="password",name='password', placeholder="Password")
+						button.btn.btn-default(type="submit") Sign in
+			else
+				.collapse.navbar-collapse
+					if navbar != null
+						ul.nav.navbar-nav.navbar-right
+							if navbar.home != null
+								li
+									a(href=navbar.home.location)
+										span.glyphicon(class="glyphicon-"+navbar.home.icon, style='margin-right: 10px')
+										=navbar.home.name
+							li.dropdown
+								a.dropdown-toggle(data-toggle="dropdown", href="#")
+									="Menu"
+									b.caret
+								ul.dropdown-menu
+									each nav in navbar.navbar
+										li
+											a(href=nav.location)
+												span.glyphicon(class="glyphicon-"+nav.icon, style='margin-right: 10px')
+												=nav.name
 							li
-								a(href=navbar.home.location)
-									span.glyphicon(class="glyphicon-"+navbar.home.icon, style='margin-right: 10px')
-									=navbar.home.name
-						li.dropdown
-							a.dropdown-toggle(data-toggle="dropdown", href="#")
-								="Menu"
-								b.caret
-							ul.dropdown-menu
-								each nav in navbar.navbar
-									li
-										a(href=nav.location)
-											span.glyphicon(class="glyphicon-"+nav.icon, style='margin-right: 10px')
-											=nav.name
-						li
-							a(href="/logout")
-								span.glyphicon.glyphicon-log-out(style='margin-right: 10px')
-								="Logout"
+								a(href="/logout")
+									span.glyphicon.glyphicon-log-out(style='margin-right: 10px')
+									="Logout"
+
+		if user != null || series != null
+			.row
+				if user != null
+					.navbar-left.navbar-brand(style='margin-left: 5px; font-size: 0.9em;font-style: italic;')
+						span= "Logged in as: " + user.name
+						if user.admin
+							if user.is_super
+								span(style='margin-left: 5px') (Super Admin)
+							else
+								span(style='margin-left: 5px') (Admin)
+				if series != null
+					.navbar-right.navbar-brand
+						span= "Current Series: "+series.series_num + " - " + new Date(series.start_date).getFullYear()
+
 

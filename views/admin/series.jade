@@ -1,0 +1,36 @@
+extends ../layout
+
+block title 
+	= "Admin Series"
+
+
+block content
+	h1.page-header Series
+
+	if serieses.length > 0
+		table.table.table-striped
+			thead
+				tr
+					th Series #
+					th Start
+					th Comp Date
+					th Length
+					th
+			tbody
+				each s in serieses
+					tr(class=(series != null && series.id == s.id) ? "success" : "")
+						td= s.series_num
+						td= s.start
+						td= s.end
+						td= s.length + " Weeks"
+						td
+							if series == null || series.id != s.id
+								a(href="/series/"+s.id+"?redirect="+currentUrl) Select Series
+							else
+								p Selected
+	else
+		p There Are No Current Series
+
+
+
+	

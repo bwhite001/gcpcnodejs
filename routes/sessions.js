@@ -1,13 +1,16 @@
 var bcrypt = require("bcrypt");
 var Admin = require("../models/admin.js");
 var Shooter = require("../models/shooter.js");
+var Series = require("../helpers/series.js");
+var view = require("./view_object.js");
 
 
 exports.view = function(req, res)
 {
 	if(req.session.user)
-		res.redirect('/');
+		res.redirect("/redirect");
 
+	var viewObject = view.create(req);
 	res.render('login');
 }
 
@@ -50,8 +53,28 @@ exports.create = function(req, res) {
 			shooter.dataValues.admin = false;
 
 			req.session.user = shooter;
-			res.redirect('/');
+			res.redirect('/redirect');
 
 		});
 	}
 };
+
+exports.setseries = function(req, res)
+{
+	var redirect = req.query.redirect;
+	var series_id = req.params.id;
+	Series.setCurrent(series_id, function(series) {
+		if(series != null)
+		{
+			req.session.series = series;
+		}
+		else
+			req.session.series = null;
+		
+		if(redirect != null)
+			res.redirect(redirect);
+		else
+			res.redirect('/redirect');
+
+	});
+}

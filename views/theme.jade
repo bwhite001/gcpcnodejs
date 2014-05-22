@@ -12,13 +12,13 @@ block content
 	each b in bootstrapnav
 		.col-sm-6.col-md-3
 			.thumbnail(id='theme_'+b)
-				img(src="/themes/"+b+"_thumbnail.png", alt=b)
+				img(src="/template_themes/"+b+"_thumbnail.png", alt=b)
 				.caption
 					p.text-center
 						if b == bootstrap
 							a.btn.btn-primary.disabled(href="#") Selected
 						else
-							a.btn.btn-primary(href="/themes/"+b)= b.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();})
+							a.btn.btn-primary(href="/template_themes/"+b)= b.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();})
 
 
 	

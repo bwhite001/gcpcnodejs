@@ -3,21 +3,22 @@ html(ng-app="ngAppGCPC")
 	head
 		include template/head
 		title 
-			= "GCPC AIR - "
-			block title
+			= "GCPC AIR - LOGIN"
 	body
-		.navbar.navbar-inverse.navbar-default(role='navigation')
+		.navbar.navbar-inverse(role='navigation', style='border-radius: 0px;')
 			.container-fluid
 				.navbar-header
 					a.navbar-brand(href='/') GCPC ACSS
-		.container
+
+		.container-fluid
 			.row(style='margin-top: 10px')
-				.well
-					form(role='form', method='post')
-						.form-group
-							label.sr-only(for="usernamelogin") Username:
-							input.form-control#usernamelogin(type="text",name='username', placeholder="Username")
-						.form-group
-							label.sr-only(for="passwordlogin") Password:
-							input.form-control#passwordlogin(type="password",name='password', placeholder="Password")
-						button.btn.btn-primary(type="submit",style='margin:auto; display:block') Sign in
+				.col-md-12
+					.well
+						form(role='form', method='post')
+							.form-group
+								label.sr-only(for="usernamelogin") Username:
+								input.form-control#usernamelogin(type="text",name='username', placeholder="Username")
+							.form-group
+								label.sr-only(for="passwordlogin") Password:
+								input.form-control#passwordlogin(type="password",name='password', placeholder="Password")
+							button.btn.btn-primary(type="submit",style='margin:auto; display:block') Sign in

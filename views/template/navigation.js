@@ -9,7 +9,7 @@ exports.create = function(user)
 	{
 		home.name = "Dashboard";
 		home.location = "/admin/dash";
-		home.icon = "stats";
+		home.icon = "dashboard";
 	}
 
 	var nav = []
