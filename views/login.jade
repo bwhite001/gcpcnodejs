@@ -1,0 +1,23 @@
+doctype html
+html(ng-app="ngAppGCPC")
+	head
+		include template/head
+		title 
+			= "GCPC AIR - "
+			block title
+	body
+		.navbar.navbar-inverse.navbar-default(role='navigation')
+			.container-fluid
+				.navbar-header
+					a.navbar-brand(href='/') GCPC ACSS
+		.container
+			.row(style='margin-top: 10px')
+				.well
+					form(role='form', method='post')
+						.form-group
+							label.sr-only(for="usernamelogin") Username:
+							input.form-control#usernamelogin(type="text",name='username', placeholder="Username")
+						.form-group
+							label.sr-only(for="passwordlogin") Password:
+							input.form-control#passwordlogin(type="password",name='password', placeholder="Password")
+						button.btn.btn-primary(type="submit",style='margin:auto; display:block') Sign in

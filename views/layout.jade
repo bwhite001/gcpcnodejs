@@ -1,38 +1,15 @@
 doctype html
-html
+html(ng-app="ngAppGCPC")
 	head
-		meta(name='viewport', content='width=device-width, user-scalable=no')
-		script(type='text/javascript', src='http://code.jquery.com/jquery-2.1.0.min.js')
-		script(type='text/javascript', src='http://code.jquery.com/ui/1.10.4/jquery-ui.min.js')
-		link(rel='stylesheet', href='//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css')
-		link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
-		link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css')
-		link(rel="stylesheet", href="/font-awesome/css/font-awesome.min.css")
-		link(rel="stylesheet", href="/bootstrap-social/bootstrap-social.css")
-		script(type='text/javascript', src='//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
-		link(rel='stylesheet', href='/styling.css')
+		include template/head
 		title 
+			= "GCPC AIR - "
 			block title
-			=" Bartercard Deals"
 	body
-		.container
-			nav(class='navbar navbar-default',style='min-height:72px', role="navigation")
-					.navbar-header
-							button(type='button', data-toggle="collapse",data-target="#navbar-collapse-main").navbar-toggle
-								span.sr-only Toggle navigation
-								span.icon-bar
-								span.icon-bar
-								span.icon-bar
-							a(class='navbar-brand', href="http://www.bartercard.com.au")
-								#logo_content
-								span#subtitle_content= "Hot Deals"
-									if(admin)
-										= " Adminstration"
-					.navbar-collapse.collapse#navbar-collapse-main
-						.navbar-right
-							ul.nav.navbar-nav
-								each menu in navbar
-									li(class=(menu.title == nav_loc ? 'active' : ''))
-										a(href=menu.url)= menu.title
-											
-			block content
+		include template/navbar
+
+		.container-fluid
+			.row
+				.col-md-12
+					block content
+							

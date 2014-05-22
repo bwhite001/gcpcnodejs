@@ -1,0 +1,24 @@
+extends layout
+
+block title 
+	= "Dashboard"
+
+
+block content
+	script(type='text/javascript',src='/js/dashboard.js')
+
+	h1.page-header Change Theme
+
+	each b in bootstrapnav
+		.col-sm-6.col-md-3
+			.thumbnail(id='theme_'+b)
+				img(src="/themes/"+b+"_thumbnail.png", alt=b)
+				.caption
+					p.text-center
+						if b == bootstrap
+							a.btn.btn-primary.disabled(href="#") Selected
+						else
+							a.btn.btn-primary(href="/themes/"+b)= b.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();})
+
+
+	

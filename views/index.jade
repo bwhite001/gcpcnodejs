@@ -1,13 +1,12 @@
 extends layout
-block title
-	=" Current Deals"
+
+block title 
+	= "Dashboard"
+
+
 block content
-	if deals.length > 0
-		.container-fluid
-			each deal in deals
-				include deal_data
+	script(type='text/javascript',src='/js/dashboard.js')
 
+	h1.page-header Gold Coast Pistol Club Air Comp Scoring System.
 
-	else
-		.jumbotron
-			p.text-center#no_current No Hot Deals At this time!
+	
